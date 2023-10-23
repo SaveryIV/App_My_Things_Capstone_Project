@@ -1,4 +1,4 @@
-#require './app.rb'
+# require './app.rb'
 
 class Menu
   def display
@@ -21,11 +21,11 @@ class Menu
 end
 
 class Main
-#entry point
   def initialize(app)
     @app = app
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def run
     menu = Menu.new
 
@@ -49,6 +49,7 @@ class Main
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end
 
 main = Main.new(App.new)
