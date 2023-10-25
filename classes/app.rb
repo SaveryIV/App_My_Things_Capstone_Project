@@ -1,10 +1,10 @@
 require_relative 'item'
 require_relative 'game'
-# require './movies.rb'
+require_relative 'genre'
 # require './games.rb'
 require_relative 'book'
 require_relative 'label'
-# require './music_album.rb'
+require_relative 'music_album'
 require_relative 'preserve_data'
 
 class App
@@ -106,5 +106,28 @@ class App
     @authors.each_with_index do |author, i|
       puts "#{i + 1} | First Name: #{author['first_name']}| Last Name: #{author['last_name']}"
     end
+  end
+
+  def create_musicAlbum
+    print 'Album title: '
+    name= gets.chomp.upcase
+    print 'Artist Name: '
+    artist = gets.chomp.capitalize
+    print 'Publish Year: '
+    year = gets.chomp
+    month = Random.rand(1..12).to_s
+    day = Random.rand(1..28).to_s
+    publish_date = "#{year}-#{month}-#{day}"
+    print 'On Spotify [Y/N]? '
+    spotify = gets.chomp.upcase
+    on_spotify = (spotify == 'Y')
+    print 'Genre name: '
+    genre_name = gets.chomp.capitalize
+    genre = @genres.find { |genre| genre.name == genre_name }
+    genre = Genre.new(genre_name) if genre == nil
+    album = MusicAlbum.new(name, artist, publish_date, on_spotify: on_spotify)
+    genre.add_item(album)
+    @album_list << album
+    @genres << genre unless @genres.include?(genre)
   end
 end
