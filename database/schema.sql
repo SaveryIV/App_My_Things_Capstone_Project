@@ -14,3 +14,23 @@ CREATE TABLE labels (
 
 CREATE INDEX books_id ON books(id);
 CREATE INDEX item_label_id ON item(id);
+
+CREATE TABLE Authors (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255)
+);
+
+
+CREATE TABLE Games (
+  id SERIAL PRIMARY KEY, 
+  multiplayer BOOLEAN,                
+  last_played_at DATE,               
+  genre VARCHAR(255),                
+  label VARCHAR(255),                
+  publish_date DATE,                 
+  archived BOOLEAN,                  
+  author_id INT REFERENCES Authors(id) 
+);
+CREATE INDEX game_id ON game(id);
+CREATE INDEX author_id ON author(id);
