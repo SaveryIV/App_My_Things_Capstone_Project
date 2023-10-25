@@ -29,12 +29,12 @@ class App
 
     @books << Book.new(publisher, cover, date)
     puts @books
-    write_to_file(@books, '../data/books.json')
+    write_to_file(@books, './data/books.json')
     puts 'Book Created Successfully'
   end
 
   def display_books
-    @books = read_from_file('../data/books.json')
+    @books = read_from_file('./data/books.json')
     puts 'Book list is empty' if @books.empty?
     @books.each_with_index do |book, i|
       puts "#{i}) Publisher: #{book['publisher']}, Cover state: #{book['cover_state']}, Publish date: #{book['publish_date']}"
@@ -50,12 +50,12 @@ class App
 
     @labels << Label.new(title, color)
     puts @labels
-    write_to_file(@labels, '../data/labels.json')
+    write_to_file(@labels, './data/labels.json')
     puts 'Label Created Successfully'
   end
 
   def display_labels
-    @labels = read_from_file('../data/labels.json')
+    @labels = read_from_file('./data/labels.json')
     puts 'Label list is empty' if @labels.empty?
     @labels.each_with_index do |label, i|
       puts "#{i}) Title: #{label['title']}, Color: #{label['color']}"
@@ -86,13 +86,13 @@ class App
     game.archived = gets.chomp
 
     @games << game
-    write_to_file(@games, '../data/games.json')
+    write_to_file(@games, './data/games.json')
     # File.write('games.json', JSON.generate(@games))
     puts 'New game added successfully'
   end
 
   def list_of_games
-    @games = read_from_file('../data/games.json')
+    @games = read_from_file('./data/games.json')
     puts 'There is no games in the store' if @games.empty?
     @games.each_with_index do |game, i|
       puts "#{i + 1} genre: #{game['genre']}|author: #{game['author']}
