@@ -26,12 +26,12 @@ class App
     print 'Cover state: '
     cover = gets.chomp.to_s
 
-    @books << Book.new(publisher, cover, date) 
+    @books << Book.new(publisher, cover, date)
     puts @books
     write_to_file(@books, './data/books.json')
     puts 'Book Created Successfully'
   end
-  
+
   def display_books
     @books = read_from_file('./data/books.json')
     puts 'Book list is empty' if @books.empty?
@@ -47,7 +47,7 @@ class App
     print 'Color: '
     color = gets.chomp.to_s
 
-    @labels << Label.new(title, color) 
+    @labels << Label.new(title, color)
     puts @labels
     write_to_file(@labels, './data/labels.json')
     puts 'Label Created Successfully'
@@ -60,33 +60,4 @@ class App
       puts "#{i}) Title: #{label['title']}, Color: #{label['color']}"
     end
   end
-
-=begin 
-  def create_music_album
-    print 'Date of publishing: '
-    date = gets.chomp
-
-    album = MusicAlbum.new(date)
-    @all_items << album
-    puts 'Item Created Successfully'
-  end
-
-  def create_movie
-    print 'Date of publishing: '
-    date = gets.chomp
-
-    movie = Movie.new(date)
-    @all_items << movie
-    puts 'Item Created Successfully'
-  end
-
-  def create_game
-    print 'Date of publishing: '
-    date = gets.chomp
-
-    game = Game.new(date)
-    @all_items << game
-    puts 'Item Created Successfully'
-  end
-=end
 end
