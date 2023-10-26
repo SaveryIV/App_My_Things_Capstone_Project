@@ -110,24 +110,34 @@ class App
 
   def create_musicAlbum
     print 'Album title: '
-    name= gets.chomp.upcase
+    name= gets.chomp.to_s.upcase
     print 'Artist Name: '
-    artist = gets.chomp.capitalize
-    print 'Publish Year: '
-    year = gets.chomp
-    month = Random.rand(1..12).to_s
-    day = Random.rand(1..28).to_s
-    publish_date = "#{year}-#{month}-#{day}"
+    artist = gets.chomp.to_s
+    print 'Publish Date: '
+    publish_date = gets.chomp.to_s
     print 'On Spotify [Y/N]? '
-    spotify = gets.chomp.upcase
+    spotify = gets.chomp.to_s.upcase
     on_spotify = (spotify == 'Y')
+    
+    album = MusicAlbum.new(publish_date, on_spotify)
+
     print 'Genre name: '
-    genre_name = gets.chomp.capitalize
-    genre = @genres.find { |genre| genre.name == genre_name }
-    genre = Genre.new(genre_name) if genre == nil
-    album = MusicAlbum.new(name, artist, publish_date, on_spotify: on_spotify)
-    genre.add_item(album)
+    album.genre = gets.chomp.to_s
+    album.author = artist
+    album.label = name
+
     @album_list << album
-    @genres << genre unless @genres.include?(genre)
+    write_to_file(@album_list, '../data/music_album.json')
+    puts 'You have createad Successfully a new Album!'
   end
+
+  def display_musicAlbum
+    @album_list = read_from_file('../data/music_album.json')
+    puts 'There is no music album in the store' if @album_list.empty?
+    @album_list.each_with_index do |album, i|
+      puts "#{i + 1} genre: #{album['genre']}|artist: #{album['author']}
+      |album name : #{album['label']}"
+    end
+  end
+  
 end
