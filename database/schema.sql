@@ -34,3 +34,20 @@ CREATE TABLE Games (
 );
 CREATE INDEX game_id ON game(id);
 CREATE INDEX author_id ON author(id);
+
+CREATE TABLE musicAlbum (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200),
+    artist VARCHAR(200),
+    publish_date DATE,
+    on_spotify BOOLEAN,
+);
+
+CREATE TABLE Genre (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(2OO),
+    Items INTEGER REFERENCES item(id),
+);
+
+CREATE INDEX album_id ON album(id);
+CREATE INDEX genre_id ON genre(id);
