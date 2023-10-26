@@ -1,4 +1,4 @@
-require './classes/app'
+require_relative 'app'
 
 class Menu
   def display
@@ -8,12 +8,13 @@ class Menu
     puts '3 - List all movies'
     puts '4 - List all music albums'
     puts '5 - List all games'
-    puts '6 - Create a book'
-    puts '7 - Create a label'
-    puts '8 - Create a movie'
-    puts '9 - Create a music album'
-    puts '10 - Create a game'
-    puts '11 - Exit'
+    puts '6 - List all authors'
+    puts '7 - Create a book'
+    puts '8 - Create a label'
+    puts '9 - Create a movie'
+    puts '10 - Create a music album'
+    puts '11 - Create a game'
+    puts '12 - Exit'
   end
 
   def choice
@@ -40,13 +41,14 @@ class Main
       when '2' then @app.display_labels
       when '3' then @app.display_movies
       when '4' then @app.display_musicAlbums
-      when '5' then @app.display_games
-      when '6' then @app.create_book
-      when '7' then @app.create_label
-      when '8' then @app.create_movie
-      when '9' then @app.create_musicAlbum
-      when '10' then @app.create_game
-      when '11' then break
+      when '5' then @app.list_of_games
+      when '6' then @app.list_of_authors
+      when '7' then @app.create_book
+      when '8' then @app.create_label
+      when '9' then @app.create_movie
+      when '10' then @app.create_musicAlbum
+      when '11' then @app.add_a_game
+      when '12' then break
       else
         puts 'Invalid choice. Please select a valid option.'
       end

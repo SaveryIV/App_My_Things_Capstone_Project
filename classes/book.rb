@@ -6,7 +6,7 @@ class Book < Item
   def initialize(publisher, cover_state, publish_date)
     @publisher = publisher
     @cover_state = cover_state
-    super(publish_date)
+    super(Date.parse(publish_date))
   end
 
   def can_be_archived?
