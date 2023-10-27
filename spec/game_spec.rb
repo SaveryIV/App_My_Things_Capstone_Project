@@ -1,6 +1,5 @@
-# game_spec.rb
-require_relative '../classes/game' # Adjust the path as needed
-require_relative '../classes/item' # Adjust the path as needed
+require_relative '../classes/game'
+require_relative '../classes/item'
 require 'rspec'
 
 describe Game do

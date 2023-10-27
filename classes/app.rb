@@ -1,10 +1,10 @@
 require_relative 'item'
 require_relative 'game'
-# require './movies.rb'
+require_relative 'genre'
 # require './games.rb'
 require_relative 'book'
 require_relative 'label'
-# require './music_album.rb'
+require_relative 'music_album'
 require_relative 'preserve_data'
 
 class App
@@ -105,6 +105,53 @@ class App
     @authors = read_from_file('./data/authors.json')
     @authors.each_with_index do |author, i|
       puts "#{i + 1} | First Name: #{author['first_name']}| Last Name: #{author['last_name']}"
+    end
+  end
+
+  def create_music_album
+    print 'Album title: '
+    name = gets.chomp.to_s.upcase
+    print 'Artist Name: '
+    artist = gets.chomp.to_s
+    print 'Publish Date: '
+    publish_date = gets.chomp.to_s
+    print 'On Spotify [Y/N]? '
+    on_spotify = gets.chomp.to_s.upcase
+
+    album = MusicAlbum.new(publish_date, on_spotify)
+
+    print 'Genre name: '
+    album.genre = gets.chomp.to_s
+    album.author = artist
+    album.label = name
+
+    @music << album
+    write_to_file(@music, './data/music_album.json')
+    puts 'You have createad Successfully a new Album!'
+  end
+
+  def display_music_albums
+    @music = read_from_file('./data/music_album.json')
+    puts 'There is no music album in the store' if @music.empty?
+    @music.each_with_index do |album, i|
+      puts "#{i + 1}) genre: #{album['genre']}|artist: #{album['author']}
+      |album name: #{album['label']}|on spotify: #{album['on_spotify']}|publish date: #{album['publish_date']}"
+    end
+  end
+
+  def create_genre
+    print 'name of the genre: '
+    name = gets.chomp.to_s
+    genre = Genre.new(name)
+    @genres << genre
+    write_to_file(@genres, './data/genres.json')
+  end
+
+  def list_genres
+    @genres = read_from_file('./data/genres.json')
+    puts 'Genres list is empty' if @genres.empty?
+    @genres.each_with_index do |genre, i|
+      puts "#{i}) Name: '#{genre['name']}',  Items: '#{genre['items']}'"
     end
   end
 end
