@@ -138,5 +138,21 @@ class App
       |album name: #{album['label']}|on spotify: #{album['on_spotify']}|publish date: #{album['publish_date']}"
     end
   end
+
+  def create_genre
+    print 'name of the genre: '
+    name = gets.chomp.to_s
+    genre = Genre.new(name)
+    @genres << genre
+    write_to_file(@genres, './data/genres.json')
+  end
   
+  def list_genres
+    @genres = read_from_file('./data/genres.json')
+    puts 'Genres list is empty' if @genres.empty?
+    @genres.each_with_index do |genre, i|
+      puts "#{i}) Name: '#{genre['name']}',  Items: '#{genre['items']}'"
+    end
+  end
+
 end

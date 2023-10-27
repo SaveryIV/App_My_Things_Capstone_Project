@@ -12,14 +12,13 @@ class Genre
 
   def add_item(item)
     @items << item
-    item.add_genre = self
+    item.genre = self
   end
 
   def to_json(*_args)
     {
     id: Random.rand(1..100),
-    name: @name,
-    items: @items
+    name: @name
     }
   end
 end
