@@ -56,7 +56,7 @@
 <!-- LIVE DEMO -->
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-N/A
+[Link to the presentation video](https://drive.google.com/file/d/1J_DIjKjeXanN17Qg-870iBf9_z8yS619/view?usp=sharing)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
