@@ -26,8 +26,8 @@ class App
     first_name = gets.chomp.to_s
     print 'Publisher Last Name: '
     last_name = gets.chomp.to_s
-    instance_author = Author.new(first_name, last_name)    
-    publisher = first_name + ' ' + last_name
+    instance_author = Author.new(first_name, last_name)
+    publisher = "#{first_name} #{last_name}"
     print 'Cover state: '
     cover = gets.chomp.to_s
 
@@ -87,8 +87,8 @@ class App
     first_name = gets.chomp.to_s
     print 'Author Last Name: '
     last_name = gets.chomp.to_s
-    publisher = first_name + ' ' + last_name
-    instance_author = Author.new(first_name, last_name)    
+    publisher = "#{first_name} #{last_name}"
+    instance_author = Author.new(first_name, last_name)
     game.author = publisher
     @authors << instance_author
     write_to_file(@authors, './data/authors.json')
