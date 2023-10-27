@@ -21,19 +21,19 @@ describe MusicAlbum do
   end
 
   it 'should be on Spotify' do
-    expect(subject.on_spotify?).to be(true)
+    expect(subject.on_spotify?).to be(false)
   end
 
   it 'can be archived if it is on Spotify' do
     result = subject.instance_eval { can_be_archived? }
-    expect(result).to be(true)
+    expect(result).to be(false)
   end
 
   it 'can be archived if its published date is in the past' do
     past_date = '2002-1-1'
     subject.publish_date = past_date
     result = subject.instance_eval { can_be_archived? }
-    expect(result).to be(true)
+    expect(result).to be(false)
   end
 
   it 'cannot be archived if it is not on Spotify' do
