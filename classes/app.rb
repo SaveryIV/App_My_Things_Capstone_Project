@@ -135,7 +135,7 @@ class App
     puts 'There is no music album in the store' if @music.empty?
     @music.each_with_index do |album, i|
       puts "#{i + 1}) genre: #{album['genre']}|artist: #{album['author']}
-      |album name: #{album['label']}|on spotify: #{album['on_spotify']}"
+      |album name: #{album['label']}|on spotify: #{album['on_spotify']}|publish date: #{album['publish_date']}"
     end
   end
   

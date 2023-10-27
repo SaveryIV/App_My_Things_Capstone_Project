@@ -12,6 +12,17 @@ class MusicAlbum < Item
     @on_spotify === 'y' ? true : false
   end
 
+  def to_json(*_args)
+    {
+      id: @id,
+      genre: @genre,
+      author: @author,
+      label: @label,
+      on_spotify: @on_spotify,
+      publish_date: @publish_date,
+    }
+  end
+
   private
 
   def can_be_archived?
