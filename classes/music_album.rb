@@ -9,7 +9,7 @@ class MusicAlbum < Item
   end
 
   def on_spotify?
-    @on_spotify === 'y' ? true : false
+    @on_spotify == 'Y'
   end
 
   def to_json(*_args)
@@ -19,7 +19,7 @@ class MusicAlbum < Item
       author: @author,
       label: @label,
       on_spotify: @on_spotify,
-      publish_date: @publish_date,
+      publish_date: @publish_date
     }
   end
 

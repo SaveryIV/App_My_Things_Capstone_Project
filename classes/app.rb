@@ -108,16 +108,16 @@ class App
     end
   end
 
-  def create_musicAlbum
+  def create_music_album
     print 'Album title: '
-    name= gets.chomp.to_s.upcase
+    name = gets.chomp.to_s.upcase
     print 'Artist Name: '
     artist = gets.chomp.to_s
     print 'Publish Date: '
     publish_date = gets.chomp.to_s
     print 'On Spotify [Y/N]? '
     on_spotify = gets.chomp.to_s.upcase
-    
+
     album = MusicAlbum.new(publish_date, on_spotify)
 
     print 'Genre name: '
@@ -130,7 +130,7 @@ class App
     puts 'You have createad Successfully a new Album!'
   end
 
-  def display_musicAlbums
+  def display_music_albums
     @music = read_from_file('./data/music_album.json')
     puts 'There is no music album in the store' if @music.empty?
     @music.each_with_index do |album, i|
@@ -146,7 +146,7 @@ class App
     @genres << genre
     write_to_file(@genres, './data/genres.json')
   end
-  
+
   def list_genres
     @genres = read_from_file('./data/genres.json')
     puts 'Genres list is empty' if @genres.empty?
@@ -154,5 +154,4 @@ class App
       puts "#{i}) Name: '#{genre['name']}',  Items: '#{genre['items']}'"
     end
   end
-
 end

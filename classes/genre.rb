@@ -17,8 +17,8 @@ class Genre
 
   def to_json(*_args)
     {
-    id: Random.rand(1..100),
-    name: @name
+      id: Random.rand(1..100),
+      name: @name
     }
   end
 end
