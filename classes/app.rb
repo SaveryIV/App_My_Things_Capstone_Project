@@ -1,6 +1,7 @@
 require_relative 'item'
 require_relative 'game'
 require_relative 'genre'
+require_relative 'author'
 # require './games.rb'
 require_relative 'book'
 require_relative 'label'
@@ -21,14 +22,20 @@ class App
     print 'Date of publishing: '
     date = gets.chomp.to_s
 
-    print 'Publisher: '
-    publisher = gets.chomp.to_s
-
+    print 'Publisher First Name: '
+    first_name = gets.chomp.to_s
+    print 'Publisher Last Name: '
+    last_name = gets.chomp.to_s
+    instance_author = Author.new(first_name, last_name)    
+    publisher = first_name + ' ' + last_name
     print 'Cover state: '
     cover = gets.chomp.to_s
 
-    @books << Book.new(publisher, cover, date)
-    puts @books
+    book = Book.new(publisher, cover, date)
+    @books << book
+    instance_author.add_item(book)
+    @authors << instance_author
+    write_to_file(@authors, './data/authors.json')
     write_to_file(@books, './data/books.json')
     puts 'Book Created Successfully'
   end
@@ -76,8 +83,15 @@ class App
 
     print 'Genre: '
     game.genre = gets.chomp
-    print 'Author: '
-    game.author = gets.chomp
+    print 'Author First Name: '
+    first_name = gets.chomp.to_s
+    print 'Author Last Name: '
+    last_name = gets.chomp.to_s
+    publisher = first_name + ' ' + last_name
+    instance_author = Author.new(first_name, last_name)    
+    game.author = publisher
+    @authors << instance_author
+    write_to_file(@authors, './data/authors.json')
     print 'Source: '
     game.source = gets.chomp
     print 'Label: '
@@ -123,6 +137,7 @@ class App
     print 'Genre name: '
     album.genre = gets.chomp.to_s
     album.author = artist
+    @authors << album.author
     album.label = name
 
     @music << album
