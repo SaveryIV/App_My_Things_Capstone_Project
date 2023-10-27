@@ -3,6 +3,7 @@ require_relative '../classes/item'
 require 'rspec'
 
 describe Game do
+  # Create a test instance of the Game class
   let(:game) { Game.new(true, Date.new(2020, 1, 1), Date.new(2002, 1, 1)) }
 
   describe '#can_be_archived?' do
