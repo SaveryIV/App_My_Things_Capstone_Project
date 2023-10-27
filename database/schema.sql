@@ -34,3 +34,21 @@ CREATE TABLE Games (
 );
 CREATE INDEX game_id ON game(id);
 CREATE INDEX author_id ON author(id);
+
+CREATE TABLE IF NOT EXISTS music_albums (
+  id INT GENERATED ALWAYS AS IDENTITY
+  on_spotify BOOLEAN NOT NULL,
+  genre VARCHAR(100) REFERENCES genres(name),
+  author VARCHAR(100) REFERENCES authors(first_name),
+  label VARCHAR(100) REFERENCES labels(title),
+  publish_date DATE,
+  archived BOOLEAN,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS genres (
+  id INT GENERATED ALWAYS AS IDENTITY
+  name VARCHAR(100),
+  items INT REFERENCES (books, music_albums, games),
+  PRIMARY KEY(id, items)
+);
